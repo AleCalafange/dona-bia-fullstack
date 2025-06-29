@@ -1,0 +1,41 @@
+POST /clientes : Cadastra um novo cliente
+{
+    "nome": "João Silva",
+    "cpf": "52998224725"
+}
+- Nome com 3 a 50 letras
+- CPF com 11 dígitos válidos
+
+GET /clientes : Lista todos os clientes
+
+PUT /clientes/:id : Atualiza dados de um cliente
+{
+    "nome": "Maria",
+    "cpf": "01234567890"
+}
+
+DELETE /clientes/:id : Remove um cliente
+
+POST /pratos : Cadastra um novo prato
+{
+    "nome": "Feijoada",
+    "preco": 30.00
+}
+- Nome com 3 a 50 letras
+- Preço positivo
+
+GET /pratos : Lista todos os pratos
+
+POST /pedidos : Registra um pedido
+{
+    "clienteId": "uuid",
+    "pratoId": "uuid"
+}
+
+GET /pedidos : Lista todos os pedidos com cliente e prato
+
+GET /relatorios/pratos-populares : Lista pratos ordenados por pedidos
+
+GET /relatorios/clientes-frequentes : Lista os 5 clientes que mais pediram
+
+GET /relatorios/clientes-que-mais-gastaram : Lista os 5 clientes que mais gastaram
