@@ -28,14 +28,14 @@ GET /pratos : Lista todos os pratos
 
 POST /pedidos : Registra um pedido
 {
-    "clienteId": "uuid",
-    "pratoId": "uuid"
+    "cpf": "12345678909",
+    "pratoId": 3
 }
 
 GET /pedidos : Lista todos os pedidos com cliente e prato
 
-GET /relatorios/pratos-populares : Lista pratos ordenados por pedidos
+GET /relatorios/pratos-mais-pedidos : Lista pratos ordenados por pedidos
 
-GET /relatorios/clientes-frequentes : Lista os 5 clientes que mais pediram
+GET /relatorios/clientes-mais-pedidos : Lista os 5 clientes que mais pediram
 
-GET /relatorios/clientes-que-mais-gastaram : Lista os 5 clientes que mais gastaram
+GET /relatorios/clientes-mais-gastaram : Lista os 5 clientes que mais gastaram
