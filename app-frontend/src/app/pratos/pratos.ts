@@ -39,29 +39,35 @@ export class Pratos implements OnInit {
     this.editandoPratoId = null;
   }
 
-  salvarPrato(): void {
-    if (this.editandoPratoId) {
-      this.pratoService.atualizar(this.editandoPratoId, this.novoPrato).subscribe({
-        next: () => {
-          this.limparFormulario();
-          this.carregarPratos();
-        },
-        error: (erro) => {
-          console.error('Erro ao atualizar prato:', erro);
-        }
-      });
-    } else {
-      this.pratoService.criar(this.novoPrato).subscribe({
-        next: () => {
-          this.limparFormulario();
-          this.carregarPratos();
-        },
-        error: (erro) => {
-          console.error('Erro ao criar prato:', erro);
-        }
-      });
-    }
+salvarPrato(): void {
+  if (this.editandoPratoId) {
+    const pratoParaAtualizar = {
+      nome: this.novoPrato.nome,
+      preco: this.novoPrato.preco
+    };
+
+    this.pratoService.atualizar(this.editandoPratoId, pratoParaAtualizar).subscribe({
+      next: () => {
+        this.limparFormulario();
+        this.carregarPratos();
+      },
+      error: (erro) => {
+        console.error('Erro ao atualizar prato:', erro);
+      }
+    });
+  } else {
+    this.pratoService.criar(this.novoPrato).subscribe({
+      next: () => {
+        this.limparFormulario();
+        this.carregarPratos();
+      },
+      error: (erro) => {
+        console.error('Erro ao criar prato:', erro);
+      }
+    });
   }
+}
+
 
   editarPrato(prato: Prato): void {
     this.novoPrato = { ...prato };

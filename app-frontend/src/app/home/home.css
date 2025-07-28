@@ -1,0 +1,36 @@
+.container {
+  text-align: center;
+  padding: 2rem;
+  background-color: #D2B48C; /* fundo bege claro */
+}
+
+.titulo {
+  background-color: #8B4513; /* marrom do topo */
+  color: white;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 2rem;
+  font-size: 2rem;
+}
+
+.botoes {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+}
+
+button {
+  background-color: #B68F40;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  color: white;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #8B4513;
+}

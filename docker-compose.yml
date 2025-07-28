@@ -7,16 +7,18 @@ services:
     ports:
       - "3000:3000"
     volumes:
-      - ./backend:/user/app
-      - ./backend/database.sqlite:/user/app/database.sqlite
+      - ./backend:/app
+      - ./backend/database.sqlite:/app/database.sqlite
     environment:
       - NODE_ENV=development
     command: npm start
+    restart: always
 
   app-frontend:
     build: ./app-frontend
     container_name: restaurante-web
     ports:
-      - "4200:4200"
+      - "8080:80"
     depends_on:
       - backend
+    restart: always

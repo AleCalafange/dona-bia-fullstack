@@ -9,7 +9,6 @@
     <option *ngFor="let prato of pratos" [value]="prato.id">{{ prato.nome }}</option>
   </select>
 
-
   <button type="submit">Cadastrar Pedido</button>
 </form>
 
@@ -23,30 +22,9 @@
   <h2>Lista de Pedidos</h2>
   <ul>
     <li *ngFor="let pedido of pedidos">
-      <div *ngIf="editandoPedidoId !== pedido.id">
-          <strong>CPF:</strong> {{ pedido.Cliente?.cpf }} |
-          <strong>Prato:</strong> {{ pedido.Prato?.nome }} 
+      <strong>CPF:</strong> {{ pedido.Cliente?.cpf }} |
+      <strong>Prato:</strong> {{ pedido.Prato?.nome }}
 
-          <button (click)="editarPedido(pedido)">Editar</button>
-          <button (click)="excluirPedido(pedido.id!)">Excluir</button>
-        </div>  
-
-      <div *ngIf="editandoPedidoId === pedido.id">
-        <label>CPF:
-          <input [(ngModel)]="pedidoEditando.cpf" name="cpfEdit" />
-        </label>
-
-        <label>Prato:
-          <select [(ngModel)]="pedidoEditando.pratoId" name="pratoIdEdit">
-            <option *ngFor="let prato of pratos" [value]="prato.id">{{ prato.nome }}</option>
-          </select>
-        </label>
-
-
-
-        <button (click)="atualizarPedido()">Salvar</button>
-        <button (click)="editandoPedidoId = null">Cancelar</button>
-      </div>
     </li>
   </ul>
 </div>

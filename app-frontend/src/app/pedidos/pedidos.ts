@@ -17,9 +17,6 @@ export class Pedidos implements OnInit {
   pratos: Prato[] = [];
 
   pedidosVisiveis: boolean = false;
-  editandoPedidoId: number | null = null;
-  pedidoEditando: Pedido = { id: 0, cpf: '', pratoId: 0};
-
 
   constructor(
     private pedidoService: PedidoService,
@@ -36,7 +33,6 @@ export class Pedidos implements OnInit {
     });
   }
 
-
   carregarPedidos(): void {
     this.pedidoService.listar().subscribe((dados) => {
       this.pedidos = dados;
@@ -50,28 +46,6 @@ export class Pedidos implements OnInit {
       this.novoPedido = { cpf: '', pratoId: 0 };
       if (this.pedidosVisiveis) this.carregarPedidos();
     });
-  }
-
-editarPedido(pedido: Pedido): void {
-    this.editandoPedidoId = pedido.id!;
-    this.pedidoEditando = { ...pedido }; // cópia para edição
-  }
-
-  atualizarPedido(): void {
-    if (this.pedidoEditando.id != null) {
-      this.pedidoService.atualizar(this.pedidoEditando.id, this.pedidoEditando).subscribe(() => {
-        this.editandoPedidoId = null;
-        this.carregarPedidos();
-      });
-    }
-  }
-
-    excluirPedido(id: number): void {
-    if (confirm('Tem certeza que deseja excluir este pedido?')) {
-      this.pedidoService.excluir(id).subscribe(() => {
-        this.carregarPedidos();
-      });
-    }
   }
 
   exibirNomeDoPrato(id: number): string {

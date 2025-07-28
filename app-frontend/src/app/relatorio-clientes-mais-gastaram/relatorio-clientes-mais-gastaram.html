@@ -1,1 +1,10 @@
-<p>relatorio-clientes-mais-gastaram works!</p>
+<h2>💰 Clientes Que Mais Gastaram</h2>
+
+<div *ngIf="ranking.length === 0">
+  <p>Nenhum dado disponível no momento.</p>
+</div>
+
+<div *ngFor="let cliente of ranking; let i = index" class="clientes-card">
+  <h3>{{ i + 1 }}º - {{ cliente.nome }}</h3>
+  <p>Total gasto: R$ {{ cliente.valorTotal | number:'1.2-2' }}</p>
+</div>

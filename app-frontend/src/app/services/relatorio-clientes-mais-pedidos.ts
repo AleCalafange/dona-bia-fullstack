@@ -3,8 +3,20 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { Observable } from 'rxjs';
 
+export interface ClientePedidos {
+  nome: string;
+  quantidadePedidos: number;
+}
+
+export interface ClienteMaisPedidosResponse {
+  ClienteId: number;
+  quantidadePedidos: number;
+  Cliente: {
+    nome: string;
+  };
+}
+
 export interface ClienteRanking {
-  cpf: string;
   nome: string;
   totalPedidos: number;
 }
@@ -17,8 +29,7 @@ export class RelatorioClientesMaisPedidosService {
 
   constructor(private http: HttpClient) {}
 
-  listar(): Observable<ClienteRanking[]> {
-    return this.http.get<ClienteRanking[]>(this.apiUrl);
+  listar(): Observable<ClienteMaisPedidosResponse[]> {
+    return this.http.get<ClienteMaisPedidosResponse[]>(this.apiUrl);
   }
-  
 }

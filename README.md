@@ -2,12 +2,11 @@
 
 **Dona Bia** is a fictional restaurant web application developed as a fullstack project using **Angular** for the frontend and **Node.js** for the backend (RESTful API).
 
-## 🍽️ Features
+## Features
 
-- Menu listing with categories
+- Menu listing 
 - Client order system
 - CRUD operations for dishes and customers
-- Admin panel (optional)
 - Responsive design
 
 ## 🛠️ Tech Stack
@@ -23,7 +22,7 @@
 - Sequelize ORM
 - SQLite 
 
-## 🚀 Getting Started
+##  Getting Started
 
 ### Clone the repository
 

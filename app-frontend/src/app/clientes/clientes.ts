@@ -31,26 +31,42 @@ carregarClientes(): void {
 }
 
 
-  salvarCliente(): void {
-    if (this.editandoClienteId) {
-      // Atualizar cliente
-      this.clienteService.atualizar(this.editandoClienteId, this.novoCliente).subscribe(() => {
-        this.limparFormulario();
-        this.carregarClientes();
-      });
-    } else {
-      // Criar novo cliente
-      this.clienteService.criar(this.novoCliente).subscribe(() => {
-        this.limparFormulario();
-        this.carregarClientes();
-      });
-    }
-  }
+salvarCliente(): void {
+  if (this.editandoClienteId) {
+    const clienteParaAtualizar = {
+      nome: this.novoCliente.nome,
+      cpf: this.novoCliente.cpf
+    };
 
-  editarCliente(cliente: Cliente): void {
-    this.novoCliente = { ...cliente }; // copia os dados para o formulário
-    this.editandoClienteId = cliente.id || null;
+    this.clienteService.atualizar(this.editandoClienteId, clienteParaAtualizar).subscribe({
+      next: () => {
+        this.limparFormulario();
+        this.carregarClientes();
+      },
+      error: (err) => {
+        alert(err.error.mensagem || 'Erro ao atualizar cliente.');
+      }
+    });
+  } else {
+    this.clienteService.criar(this.novoCliente).subscribe({
+      next: () => {
+        this.limparFormulario();
+        this.carregarClientes();
+      },
+      error: (err) => {
+        alert(err.error.mensagem || 'Erro ao cadastrar cliente.');
+      }
+    });
   }
+}
+
+
+editarCliente(cliente: Cliente): void {
+  console.log('Editando cliente com ID:', cliente.id); // debug
+  this.novoCliente = { ...cliente };
+  this.editandoClienteId = cliente.id ?? null;
+}
+
 
   excluirCliente(id: number): void {
     if (confirm('Tem certeza que deseja excluir este cliente?')) {
