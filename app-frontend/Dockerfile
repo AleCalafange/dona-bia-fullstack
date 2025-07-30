@@ -1,18 +1,12 @@
-FROM node:20 as build
-
+FROM node:20 AS build
 WORKDIR /app
 COPY package*.json ./
 RUN npm install
 COPY . .
-RUN npm run build -- --configuration=production
+RUN npm run build --prod
 
 FROM nginx:alpine
-
-# Copia os arquivos do Angular
-COPY --from=build /app/dist/app-frontend/browser /usr/share/nginx/html
-
-# Copia a configuração personalizada
-COPY nginx.conf /etc/nginx/conf.d/default.conf
-
+RUN rm -rf /usr/share/nginx/html/*
+COPY --from=build /app/dist/app-frontend/browser/ /usr/share/nginx/html/
 EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]

@@ -3,20 +3,20 @@ version: '3.8'
 services:
   backend:
     build: ./backend
-    container_name: restaurante-api
+    container_name: restaurante-dona-bia
     ports:
       - "3000:3000"
     volumes:
-      - ./backend:/app
-      - ./backend/database.sqlite:/app/database.sqlite
+      - ./backend/restaurante.sqlite:/app/restaurante.sqlite
     environment:
       - NODE_ENV=development
+    working_dir: /app
     command: npm start
     restart: always
 
   app-frontend:
     build: ./app-frontend
-    container_name: restaurante-web
+    container_name: restaurante-app
     ports:
       - "8080:80"
     depends_on:
